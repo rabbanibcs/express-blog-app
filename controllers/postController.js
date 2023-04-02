@@ -12,13 +12,14 @@ const createPost=async(req,res)=>{
         data: fs.readFileSync(path.join(process.cwd() + '/uploads/' + req.file.filename)),
         contentType: req.file.mimetype
     }
-
-    var post=await postModel.create({...req.body,image,user:req.user.id})
-    console.log(post);
-    res.redirect(`/post/view?id=${post._id}`)
-    // res.render(path.join(__dirname,'../templates/pages/viewPost.ejs'), { post})
-
-    // res.render(path.join(__dirname,'../templates/pages/postCreate.ejs'))
+    try {
+        var post=await postModel.create({...req.body,image,user:req.user.id})
+        res.redirect(`/post/view?id=${post._id}`)
+    } catch (err) {
+        console.log(err.message);
+        res.redirect(`/error?message=${err.message}`)
+    }
+    
 }
 
 const viewPost=async(req,res)=>{
@@ -48,45 +49,60 @@ const viewPost=async(req,res)=>{
     
         }
         res.render(path.join(__dirname,'../templates/pages/viewPost.ejs'), { post})
-    
-        
     } catch (err) {
-        console.log(err);
-        res.json({"error":`There is no post having id-> ${post_id} `})
+        console.log(err.message);
+        res.redirect(`/error?message=${err.message}`)
     }
-    
-    
-    
-    
-
 }
 
 const updatePost=async(req,res)=>{
-    const {title,content,category,id}=req.body
-    await postModel.updateOne({_id:req.body.id},{$set:{title,content,category}})
-    res.redirect(`/post/view?id=${id}`)
+    try {
+        const {title,content,category,id}=req.body
+        await postModel.updateOne({_id:req.body.id},{$set:{title,content,category}})
+        res.redirect(`/post/view?id=${id}`)
 
+    } catch (err) {
+        console.log(err.message);
+        res.redirect(`/error?message=${err.message}`)
+    }
+    
 }
 
 const postUpdateForm=async(req,res)=>{
-    // console.log(req.method);
-    post=await postModel.findOne({_id:req.query.id})
+    try {
+        post=await postModel.findOne({_id:req.query.id})
+        console.log(post.user);
+        /** admin or author of the post*/
+        if(post.user==req.user.id || req.user.admin){
+            res.locals.editPost=true
+            res.render(path.join(__dirname,'../templates/pages/postEdit.ejs'), { post })
 
-    if(req.user.id===post.user_id){
-        res.locals.editPost=true
+        }else{
+            var message="You are a ghost"
+        res.redirect(`/error?message=${message}`)
+
+        }
+    } catch (err) {
+        console.log(err.message);
+        res.redirect(`/error?message=${err.message}`)
+        
     }
-    res.render(path.join(__dirname,'../templates/pages/postEdit.ejs'), { post })
-
+    
 
 }
+/**category wise posts */
 const fetchPostsByCategory=async(req,res)=>{
-    // console.log(req.query);
-    posts=await postModel.find({category:req.query.category})
-    res.render(path.join(__dirname,'../templates/pages/posts.ejs'), { posts: posts })
-    
+    try {
+        posts=await postModel.find({category:req.query.category})
+        res.render(path.join(__dirname,'../templates/pages/posts.ejs'), { posts: posts })
+        
+    } catch (err) {
+        console.log(err.message);
+        res.redirect(`/error?message=${err.message}`)
+    }
+
 }
 const search=async(req,res)=>{
-    console.log(req.query.keywords);
     const keywords=req.query.keywords;
     posts=await postModel.find({
         $text:
@@ -96,6 +112,5 @@ const search=async(req,res)=>{
       })
       console.log(posts);
     res.render(path.join(__dirname,'../templates/pages/posts.ejs'), { posts: posts })
-    // res.redirect("/")
 }
 module.exports={search,createPost,viewPost,postUpdateForm,updatePost,viewPostForm,fetchPostsByCategory}

@@ -39,5 +39,9 @@ const about=async(req,res)=>{
 
     res.render(path.join(__dirname,'../templates/pages/about.ejs'))
 }
-module.exports={index,contact,about};
+const error=async(req,res)=>{
+    const error=req.query.message
+    res.render(path.join(__dirname,'../templates/pages/error.ejs'),{error})
+}
+module.exports={index,contact,about,error};
 

@@ -9,27 +9,36 @@ const saltRounds = 10;
 /**Must be logged in */
 const profile=async(req,res)=>{
     if(req.query.id){
+        /** Admin or user self are allowed */
+        if(req.user.admin || req.query.id==req.user.id){
             try {
                 /**get user info and his/her posts */
                 var user_info=await userModel.findOne({_id:req.query.id})
                 const posts=await postModel.find({user:req.query.id},{image:0})
                 res.render(path.join(__dirname,'../templates/pages/profile.ejs'),{user_info,posts})
             
-            } catch (error) {
-                console.log(error);
-                res.redirect("/")
+            } catch (err) {
+                console.log(err.message);
+                res.redirect(`/error?message=${err.message}`)
             }
+
+        }else{
+            // console.log(error);
+            res.redirect("/error")
+        }
+           
         
         
     }else{
-        /**show user profile who is logged in */
+        /**show profile who is logged in */
         try {
             const user_info=await userModel.findOne({_id:req.user.id})
             const posts=await postModel.find({user:req.user.id},{image:0})
             res.render(path.join(__dirname,'../templates/pages/profile.ejs'),{user_info,posts})
         
-        } catch (error) {
-            console.log(error);
+        } catch (err) {
+            console.log(err.message);
+            res.redirect(`/error?message=${err.message}`)
             
         }
        
@@ -37,7 +46,7 @@ const profile=async(req,res)=>{
     
 }
 const updateProfile=async(req,res)=>{
-    console.log(req.body.user_id);
+    // console.log(req.body.user_id);
     const user_id=req.body.user_id
     if(req.file){
         const image={
@@ -56,7 +65,7 @@ const updateProfile=async(req,res)=>{
 }
 
 const verifyUser=async(email,password,cb)=>{
-    console.log('verifing user...');
+    // console.log('verifing user...');
     // check if user with given email exists
     const user=await userModel.findOne({email}).exec()
     if(user){

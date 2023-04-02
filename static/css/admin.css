@@ -31,9 +31,13 @@ a,a:visited {
     border-bottom: 0px solid transparent;
 }
 
+h2 {
+    text-align: center;
+  }
 
 
-
-
+  h4 {
+    text-align: center;
+  }
 
 

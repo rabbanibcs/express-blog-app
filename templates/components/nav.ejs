@@ -36,7 +36,7 @@
                 <% }%>
                  <% if(locals.user){ %>
                     <li class="has-children">
-                        <a href="/" title=""><%=locals.user.email%></a>
+                        <a href="/user/profile" title=""><%=locals.user.email%></a>
                         <ul class="sub-menu">
                             <li><a href="/post/create" title="">CreatePost</a></li>
                             <% if(locals.user.admin){ %>

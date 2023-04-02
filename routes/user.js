@@ -46,7 +46,7 @@ router.get('/signout',loginRequired, function(req, res, next) {
   });
   
 /* GET profile page. */
-router.get('/profile',loginRequired,adminOrSelf,userController.profile);
+router.get('/profile',loginRequired,userController.profile);
 router.post('/profile',loginRequired,upload.single('image'),userController.updateProfile);
 
 module.exports = router;
