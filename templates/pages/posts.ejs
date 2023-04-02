@@ -1,0 +1,82 @@
+<%- include ('../components/header.ejs') %>
+	<!-- header 
+   ================================================== -->
+   <%- include ('../components/nav.ejs') %>
+
+
+   <!-- masonry
+   ================================================== -->
+   <section id="bricks">
+
+   	<div class="row masonry">
+
+   		<!-- brick-wrapper -->
+         <div class="bricks-wrapper">
+
+         	<div class="grid-sizer"></div>
+
+
+			 <% posts.forEach(function(post) { %>
+
+				<article class="brick entry format-standard animate-this">
+
+					<div class="entry-thumb">
+						<a href="/post/view?id=<%= post._id%>" class="thumb-link">
+						<img src="data:image/<%=post.image.contentType%>;base64,
+						<%=post.image.data.toString('base64')%>">           
+					   </a>
+					</div>
+	 
+					<div class="entry-text">
+						<div class="entry-header">
+	 
+							<div class="entry-meta">
+								<span class="cat-links">
+									<a href="#">Design</a> 
+									<a href="#"><%= post.category %></a>               				
+								</span>			
+							</div>
+	 
+							<h1 class="entry-title"><a href="/post/view?id=<%= post._id%>"><%= post.title %></a></h1>
+							
+						</div>
+							 <div class="entry-excerpt">
+								<%= post.content.slice(0,350) %> ...<a  href="/post/view?id=<%= post._id%>">read more</a>
+							 </div>
+					</div>
+	 
+					 </article> <!-- end article -->
+	 
+				<% }) %>
+         	
+
+         </div> <!-- end brick-wrapper --> 
+
+   	</div> <!-- end row -->
+<!-- 
+   	<div class="row">
+   		
+   		<nav class="pagination">
+		      <span class="page-numbers prev inactive">Prev</span>
+		   	<span class="page-numbers current">1</span>
+		   	<a href="#" class="page-numbers">2</a>
+		      <a href="&page=3" class="page-numbers">3</a>
+		      <a href="#" class="page-numbers">4</a>
+		      <a href="#" class="page-numbers">5</a>
+		      <a href="#" class="page-numbers">6</a>
+		      <a href="#" class="page-numbers">7</a>
+		      <a href="#" class="page-numbers">8</a>
+		      <a href="#" class="page-numbers">9</a>
+		   	<a href="#" class="page-numbers next">Next</a>
+	      </nav>
+
+   	</div> -->
+
+   </section> <!-- end bricks -->
+
+   
+   <!-- footer
+   ================================================== -->
+   
+
+<%- include ('../components/footer.ejs') %>

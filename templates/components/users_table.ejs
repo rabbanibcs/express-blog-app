@@ -1,0 +1,38 @@
+
+<div class="table-responsive">
+
+    <table>
+          <thead>
+             <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Sex</th>
+                <th>Admin</th>					    
+             </tr>
+          </thead>
+          <tbody>
+            <%users.forEach(user=>{%>
+                <tr>
+                    <td><a href="/user/profile?id=<%=user.id%>" ><%=user.name%></a></td>
+                    <td><%=user.email%></td>
+                    <td><%if(user.gender){%>
+                            Male
+                    <%}else{%>
+                        Female
+                    <%}%></td>
+                    <%if(user.admin){%>
+                    <td>Yes</td>					    
+
+                    <%}else{%>
+                    
+                        <td>No</td>					    
+                    
+                        <%}%>
+                 </tr>
+            <%})%>
+            
+                
+          </tbody>
+     </table>
+
+</div>

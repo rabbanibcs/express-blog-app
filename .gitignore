@@ -1,0 +1,6 @@
+.env
+urls.txt
+mongoDb.txt
+info.txt
+uploads
+node_modules

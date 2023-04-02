@@ -1,0 +1,21 @@
+<div class="row">
+   		
+    <nav class="pagination">
+        <%if(currentPage>1){%>
+            <a href="?page=<%=Number(currentPage)-1%>" class="page-numbers prev inactive">Prev</a>
+        <%}%>
+     <%pages.forEach((page)=>{%>
+        <a href="?page=<%=page%>" class="page-numbers 
+            <%if(currentPage==page){%>
+                current
+            <%}%>
+            "><%=page%></a>
+     <%})%>
+
+     <%if(currentPage< pages[pages.length-1]){%>
+        <a href="?page=<%=Number(currentPage)+1%>" class=page-numbers next">Next</a>
+    <%}%>
+
+   </nav>
+
+</div>

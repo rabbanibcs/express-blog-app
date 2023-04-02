@@ -1,0 +1,218 @@
+<%- include ('../components/header.ejs') %>
+	<!-- header 
+   ================================================== -->
+   <%- include ('../components/nav.ejs') %>
+
+
+   <!-- content
+   ================================================== -->
+   <section id="content-wrap" class="blog-single">
+        <div class="row">
+            <div class="col-twelve">
+<!-- 
+    ==================name================================= -->
+                
+                <div class="row" id="name-show">
+                    <div class="col-ten">
+                        <h3>Name: </h2>
+                        <h5 style="margin-left: 3%;"><%=user_info.name%></h5>
+                    </div>
+                    <div class="col-two">
+                    <i class="fa fa-pencil" onclick="save_name()" style="font-size:24px;cursor: pointer;"></i>
+                    </div>
+                </div>
+                <div class="row" id="name-save" style="display:none">
+                    <div class="col-ten">
+                        <h3>Name: </h2>
+                    </div>
+                    <form method="POST" action="">
+                        <div class="col-ten">
+                            <input class="col-ten" name="user_id"  value="<%=user_info.id%>" name="id" hidden>
+                            <input class="col-ten"
+                            value="<%=user_info.name%>" 
+                            type="text" name="name">
+                        </div>
+                        <div class="col-two">
+                            <input type="submit" value="save">
+                        </div>
+                    </form>
+                </div>
+<!-- 
+    ==================email================================= -->
+
+                <div class="row" id="email-show">
+                    <div class="col-ten">
+                        <h3 >Email: </h3>
+                        <h5  style="margin-left: 3%;"><%=user_info.email%></h5>
+                    </div>
+                    <div class="col-two">
+                    <i class="fa fa-pencil" onclick="save_email()"  style="font-size:24px; cursor: pointer;"></i>
+                    </div>
+                </div>
+                <div class="row" id="email-save" style="display:none">
+                    <div class="col-ten">
+                        <h3 >Email: </h3>
+                        <h5  style="margin-left: 3%;"></h5>
+                    </div>
+                    <form method="POST" action="">
+                        <div class="col-ten">
+                            <input class="col-ten" name="user_id"  value="<%=user_info.id%>" name="id" hidden>
+                            <input class="col-ten"
+                            value="<%=user_info.email%>" 
+                            type="email" name="email">
+                        </div>
+                        <div class="col-two">
+                            <input type="submit" value="save">
+                        </div>
+                    </form>
+                </div>
+<!-- 
+    ==================about================================= -->
+                <div class="row" id="about-ahow">
+                    <div class="col-ten">
+                        <h3 >About: </h3><p style="margin-left: 3%;"><%=user_info.about%></p>
+                    </div>
+                    <div class="col-two">
+                    <i class="fa fa-pencil" onclick="save_about()"  style="font-size:24px; cursor: pointer;"></i>
+                    </div>
+                </div>
+                <div class="row" id="about-save" style="display:none">
+                    <div class="col-ten">
+                        <h3 >About: </h3>
+                    </div>
+                    <!-- <div class="col-two">
+                        <i class="fa fa-pencil" onclick="save_about()"  style="font-size:24px; cursor: pointer;"></i>
+                    </div> -->
+                    <form method="POST" action="">
+                        <div class="col-ten">
+                            <input class="col-ten" name="user_id" value="<%=user_info.id%>" name="id" hidden>
+                            <textarea class="col-ten" type="taxt" name="about"><%=user_info.about%></textarea>
+                        </div>
+                        <div class="col-two">
+                            <input type="submit" value="save">
+                        </div>
+                    </form>
+                </div>
+                <!-- 
+        =========================posts of the user====================== -->
+                <div class="row" >
+                    <div class="col-twelve" >
+                        <h3 ><%=Object.keys(posts).length%> Posts:</h3>
+                        <%posts.forEach((post,id)=>{%>
+                            <div class="row" style="margin-left: 3%;">
+                                <div class="col-ten">
+                                    <h3 >
+                                        <%=id+1%>. <a href="/post/view?id=<%=post.id%>"><%=post.title%></a>
+                                    </h3>
+                                </div>
+                                <div class="col-two">
+                                <a href="/post/edit?id=<%=post._id%>"><i class="fa fa-pencil" style="font-size:24px; cursor: pointer;"></i></a>
+                                </div>
+                            </div>
+                        
+                        <%})%>
+
+                    </div>
+                    
+                </div>
+<!-- 
+    ====================photo===================== -->
+    <div class="row" >
+        <div class="col-ten">
+            <h3 >Image: </h3>
+            <%if(user_info.image.data!=undefined){%>
+                <img style="margin-left: 5%;height: 100px;width: 100px;" src="data:image/<%=user_info.image.contentType%>;base64,<%=user_info.image.data.toString('base64')%>"> 
+            <%}%>
+           
+        </div>
+        <div class="col-two">
+        <i class="fa fa-pencil" onclick="save_photo()"  style="font-size:24px; cursor: pointer;"></i>
+        </div>
+    </div>
+    <div class="row" id="photo-show" style="display:none">
+        <form method="POST" action="" enctype="multipart/form-data">
+        <input class="col-ten" name="user_id"  value="<%=user_info.id%>" name="id" hidden>
+
+        <div class="col-ten">
+                <input type="file" name="image">
+        </div>
+        <div class="col-two">
+            <input type="submit" value="upload">
+
+        </div>
+    </form>
+
+    </div>
+
+                
+            </div> <!-- end col-twelve -->
+        </div> <!-- end row -->
+    </section> <!-- end content -->
+
+   
+
+
+
+<script>
+    function save_email() {
+        const x=document.getElementById('email-save')
+        const y=document.getElementById('email-show')
+
+        if (x.style.display === "none") {
+            x.style.display = "block";
+            y.style.display = "none";
+
+        } else {
+            x.style.display = "none";
+            y.style.display = "block";
+
+        }
+    }
+    function save_name() {
+        const x=document.getElementById('name-save')
+        const y=document.getElementById('name-show')
+
+        if (x.style.display === "none") {
+            x.style.display = "block";
+            y.style.display = "none";
+        } else {
+            x.style.display = "none";
+            y.style.display = "block";
+        }
+    }
+    
+    function save_about() {
+        const x=document.getElementById('about-save')
+        const y=document.getElementById('about-ahow')
+
+        if (x.style.display === "none") {
+            x.style.display = "block";
+            y.style.display = "none";
+        } else {
+            x.style.display = "none";
+            y.style.display = "block";
+
+        }
+    }
+    function save_photo() {
+        const x=document.getElementById('photo-show')
+        // const y=document.getElementById('about-ahow')
+
+        if (x.style.display === "none") {
+            x.style.display = "block";
+            // y.style.display = "none";
+        } else {
+            x.style.display = "none";
+            // y.style.display = "block";
+
+        }
+    }
+</script>
+
+
+
+
+
+   <!-- footer
+   ================================================== -->
+<%- include ('../components/footer.ejs') %>

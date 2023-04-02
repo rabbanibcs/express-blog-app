@@ -1,0 +1,29 @@
+
+<div class="table-responsive">
+
+    <table>
+          <thead>
+             <tr>
+                <th></th>
+                <th>Title</th>
+                <th>Category</th>
+                <th>Author</th>
+                <th>Email</th>					    
+             </tr>
+          </thead>
+          <tbody>
+            <%posts.forEach((post,id)=>{%>
+                <tr>
+                    <td><%=id+1%></td>
+                    <td><%=post.title%></td>
+                    <td><%=post.category%></td>
+                    <td><%=post.user.name%>
+                    <td><%=post.user.email%></td>					    
+                 </tr>
+            <%})%>
+            
+                
+          </tbody>
+     </table>
+
+</div>

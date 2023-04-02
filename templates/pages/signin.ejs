@@ -1,0 +1,71 @@
+<%- include ('../components/header.ejs') %>
+	<!-- header 
+   ================================================== -->
+   <%- include ('../components/nav.ejs') %>
+
+
+   <!-- masonry
+   ================================================== -->
+   <section id="bricks">
+
+   	<div class="row masonry">
+
+   		<!-- brick-wrapper -->
+         <div class="bricks-wrapper">
+
+         	<div class="grid-sizer"></div>
+
+
+			 <div class="col-six tab-full">
+				
+				<%_ if(typeof message !== "undefined"){ _%>
+					<div class="alert-box ss-error hideit">
+
+						<p><%= message%></p>
+						<i class="fa fa-times close"></i>
+					</div><!-- /error -->
+				<%_ } _%>
+
+
+				<h3>Login </h3>
+  
+				<form method="POST" action="/user/signin">
+					
+					<div>
+						<label for="sampleInput">Email</label>
+						<input class="full-width" name="email" type="email" placeholder="example@mailbox.com" id="sampleInput">
+				  </div>
+					<div>
+						  <label for="sampleRecipientInput">Password</label>
+						  <input class="full-width" name="password" type="password" placeholder="pass****word" id="sampleInput">
+			         	
+					</div>
+					
+				  
+					   <input class="button-primary full-width-on-mobile" type="submit" value="Login">
+  
+				 </form>	            
+  
+			 </div>
+  
+               
+
+        
+         </div> <!-- end brick-wrapper --> 
+
+   	</div> <!-- end row -->
+
+   	<div class="row">
+   		
+   		
+
+   	</div>
+
+   </section> <!-- end bricks -->
+
+   
+   <!-- footer
+   ================================================== -->
+   
+
+<%- include ('../components/footer.ejs') %>
