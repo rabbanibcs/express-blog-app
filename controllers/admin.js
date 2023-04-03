@@ -1,6 +1,8 @@
 const path = require('path');
 const userModel=require("../db/models/user")
 const postModel=require("../db/models/post")
+const categoryModel=require("../db/models/category")
+
 class admin{
     constructor(){
 
@@ -29,6 +31,27 @@ class admin{
 
         res.render(path.join(__dirname,'../templates/pages/admin_posts.ejs'),{posts})
     }
+    async getCategories (req,res){
+        try {
+            var categories=await categoryModel.find({})
+            // console.log(posts);
+
+        } catch (err) {
+            console.log(err);
+        }
+
+        res.render(path.join(__dirname,'../templates/pages/admin_categories.ejs'),{categories})
+    }
+    async createCategory (req,res){
+        try {
+            var categories=await categoryModel.create({...req.body})
+            // console.log(posts);
+
+        } catch (err) {
+            console.log(err);
+        }
+        res.redirect("/admin/categories")
+    }
 }
 
-module.exports=admin
+module.exports=new admin()

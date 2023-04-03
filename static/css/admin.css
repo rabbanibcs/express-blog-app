@@ -39,5 +39,20 @@ h2 {
   h4 {
     text-align: center;
   }
+.center{
+    width: 60%;
+}
+.center-right{
+    width: 40%;
+    padding-left: 2rem;
 
+}
+.category-right{
+    width: 80%;
+    padding-left: 5rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    display: flex;
+
+}
 

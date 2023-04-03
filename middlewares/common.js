@@ -1,28 +1,27 @@
 
 var createError = require('http-errors')
-const categoryModel=require('../db/models/category')
+ var categoryModel=require('../db/models/category')
 
-
-const authenticatedUserNotAllowed=(req,res,next)=>{
+class middleware{
+   authenticatedUserNotAllowed(req,res,next){
     if(req.isAuthenticated()){
-        res.redirect('/');
+      var message="You are already logged in"
+      res.redirect(`/error?message=${message}`)
     }else{
       next()
     }
   }
   
-const loginRequired=(req,res,next)=>{
+ loginRequired(req,res,next){
     if(req.isUnauthenticated()){
-        res.redirect('/user/signin');
+      var message="You are not logged in"
+      res.redirect(`/error?message=${message}`)
     }else{
       next();
     }
   }
-  function logIn(req, res, next) {
-    if (!req.user) return next(createError(401, 'Please login to view this page.'))
-    next()
-  }
-  const getCategories=async(req,res,next)=>{
+  
+  async getCategories(req,res,next){
     var categories=await categoryModel.find({},{_id:0})
     res.locals.categories=categories
     if (req.session.passport) { 
@@ -33,7 +32,7 @@ const loginRequired=(req,res,next)=>{
     next()
   }
 /** Admin or user self are allowed */
-const adminOrSelf=(req,res,next)=>{
+ adminOrSelf(req,res,next){
   if(req.user.admin==true || req.user.id==req.query.id){
     next()
   }else{
@@ -41,7 +40,22 @@ const adminOrSelf=(req,res,next)=>{
 
   }
 }
+/**only admin is allowed */
+ adminOnly(req,res,next){
+  if(req.isAuthenticated() ){
+    if(req.user.admin){
+      next()
+
+    }else{
+      var message="You are not Admin"
+      res.redirect(`/error?message=${message}`)
+    }
+  }else{
+    var message="You are not logged in"
+    res.redirect(`/error?message=${message}`)
+  }
+}
+}
 
   
-  module.exports={loginRequired,logIn,adminOrSelf,
-    getCategories,authenticatedUserNotAllowed}
+  module.exports=new middleware()

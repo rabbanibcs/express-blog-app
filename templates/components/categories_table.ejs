@@ -1,0 +1,23 @@
+
+<div class="table-responsive">
+
+    <table>
+          <thead>
+             <tr>
+                <th></th>					    
+                <th>Category</th>					    
+             </tr>
+          </thead>
+          <tbody>
+            <%categories.forEach((category,id)=>{%>
+                <tr>
+                    <td><%=id+1%></td>					    
+                    <td><%=category.name%></td>					    
+                 </tr>
+            <%})%>
+            
+                
+          </tbody>
+     </table>
+
+</div>

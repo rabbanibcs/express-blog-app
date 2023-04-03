@@ -5,11 +5,21 @@
    <section id="bricks">
    	<div class="main">
    <%- include ('../components/admin_left.ejs') %>
-       
-        <div class="right">
+        
+        <div class="category-right">
             
             
-            <%-include('../components/users_table.ejs')%>
+            <div class="center">
+            <%-include('../components/categories_table.ejs')%>
+
+            </div>
+            <div class="center-right">
+                <h3>Add a Category:</h3>
+                <form class="" action="/admin/categories" method="POST">
+                    <input type="text" name="name">
+                    <input type="submit" value="Add">
+                </form>
+            </div>
                 
         </div>
     </div>

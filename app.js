@@ -1,31 +1,37 @@
+const dotenv=require('dotenv')
+dotenv.config()
 const express=require('express')
+const path = require('path');
+// const bodyParser = require('body-parser');
 const multer  = require('multer')
-const db=require('./db/db')
+const passport = require('passport');
+const session = require('express-session');
+const MongoDBStore = require('connect-mongodb-session')(session);
+/**import routers */
 const indexRouter = require('./routes/index');
 const userRouter = require('./routes/user');
 const postRouter = require('./routes/post');
 const adminRouter = require('./routes/admin');
-const path = require('path');
-const bodyParser = require('body-parser');
-const port=process.env.PORT || 8000
-const categoryModel=require("./db/models/category")
-const passport = require('passport');
-const session = require('express-session');
-const MongoDBStore = require('connect-mongodb-session')(session);
-const {getCategories}=require('./middlewares/common')
 
-const dotenv=require('dotenv')
-dotenv.config()
+
+/**load env variables */
+const port=process.env.PORT || 8000
 const databaseUrl=process.env.DATABASE_URL
 const dbName=process.env.DB_NAME
-// console.log(process.env);
+
+/**load middleware */
+const {getCategories}=require('./middlewares/common')
+const db=require('./db/db')
+
+
+
 const store = new MongoDBStore({
     uri: 'mongodb://localhost:27017/blog',
     collection: 'userSessions'
   });
 
 
-
+/**create express app */
 var app=express()
 
 
@@ -33,8 +39,6 @@ var app=express()
 app.use(express.static(path.join(__dirname,'static')))
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
-// app.use(bodyParser.json())
-
 app.use(session({
 secret: 'keyboard cat',
 resave: false,
@@ -45,8 +49,8 @@ cookie:{
 }
 }));
 app.use(passport.authenticate('session'));
-
 app.use(getCategories)
+
 /**routers */
 app.use('/', indexRouter);
 app.use('/user', userRouter);
