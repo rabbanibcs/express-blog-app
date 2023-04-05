@@ -1,40 +1,47 @@
-
 <div class="table-responsive">
 
     <table>
-          <thead>
-             <tr>
+        <thead>
+            <tr>
                 <th></th>
                 <th>Name</th>
                 <th>Email</th>
                 <th>Sex</th>
-                <th>Admin</th>					    
-             </tr>
-          </thead>
-          <tbody>
+                <th>Admin</th>
+            </tr>
+        </thead>
+        <tbody>
             <%users.forEach((user,id)=>{%>
                 <tr>
-                    <td><%=id+1%></td>
-                    <td><a href="/user/profile?id=<%=user.id%>" ><%=user.name%></a></td>
-                    <td><%=user.email%></td>
-                    <td><%if(user.gender){%>
+                    <td>
+                        <%=id+1%>
+                    </td>
+                    <td><a href="/user/profile?id=<%=user.id%>">
+                            <%=user.name%>
+                        </a></td>
+                    <td>
+                        <%=user.email%>
+                    </td>
+                    <td>
+                        <%if(user.gender){%>
                             Male
-                    <%}else{%>
-                        Female
-                    <%}%></td>
+                            <%}else{%>
+                                Female
+                                <%}%>
+                    </td>
                     <%if(user.admin){%>
-                    <td>Yes</td>					    
+                        <td>Yes</td>
 
-                    <%}else{%>
-                    
-                        <td>No</td>					    
-                    
-                        <%}%>
-                 </tr>
-            <%})%>
-            
-                
-          </tbody>
-     </table>
+                        <%}else{%>
+
+                            <td>No</td>
+
+                            <%}%>
+                </tr>
+                <%})%>
+
+
+        </tbody>
+    </table>
 
 </div>

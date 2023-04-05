@@ -1,87 +1,93 @@
 <%- include ('../components/header.ejs') %>
 	<!-- header 
    ================================================== -->
-   <%- include ('../components/nav.ejs') %>
+	<%- include ('../components/nav.ejs') %>
 
 
-   <!-- masonry
+		<!-- masonry
    ================================================== -->
-   <section id="bricks">
+		<section id="bricks">
 
-   	<div class="row masonry">
+			<div class="row masonry">
 
-   		<!-- brick-wrapper -->
-         <div class="bricks-wrapper">
+				<!-- brick-wrapper -->
+				<div class="bricks-wrapper">
 
-         	<div class="grid-sizer"></div>
-
-
-			 <div class="col-six tab-full">
-				
-				<%_ if(typeof message !== "undefined"){ _%>
-					<div class="alert-box ss-error hideit">
-
-						<p><%= message%></p>
-						<i class="fa fa-times close"></i>
-					</div><!-- /error -->
-				<%_ } _%>
+					<div class="grid-sizer"></div>
 
 
-				<h3>Registration Form </h3>
-  
-				<form method="POST" action="/user/signup">
-					<div>
-						  <label for="sampleInput">Your name</label>
-						  <input class="full-width" name="name" placeholder="Arif Rabbani Akanda" id="sampleInput">
+					<div class="col-six tab-full">
+
+						<%_ if(typeof message !=="undefined" ){ _%>
+							<div class="alert-box ss-error hideit">
+
+								<p>
+									<%= message%>
+								</p>
+								<i class="fa fa-times close"></i>
+							</div><!-- /error -->
+							<%_ } _%>
+
+
+								<h3>Registration Form </h3>
+
+								<form method="POST" action="/user/signup">
+									<div>
+										<label for="sampleInput">Your name</label>
+										<input class="full-width" name="name" placeholder="Arif Rabbani Akanda"
+											id="sampleInput">
+									</div>
+									<div>
+										<label for="sampleInput">Your email</label>
+										<input class="full-width" name="email" type="email"
+											placeholder="example@mailbox.com" id="sampleInput">
+									</div>
+									<div>
+										<label for="sampleRecipientInput">Password</label>
+										<input class="full-width" name="password" type="password"
+											placeholder="pass****word" id="sampleInput">
+
+									</div>
+									<div>
+										<label for="sampleRecipientInput">Retype Password</label>
+										<input class="full-width" name="password2" type="password"
+											placeholder="pass****word" id="sampleInput">
+
+									</div>
+									<div>
+										<label for="sampleRecipientInput">Gender</label>
+										<div class="ss-custom-select">
+											<select class="full-width" name="gender" id="sampleRecipientInput">
+												<option value="1">Male</option>
+												<option value="2">Female</option>
+												<option value="3">Others</option>
+											</select>
+										</div>
+									</div>
+									<input class="button-primary full-width-on-mobile" type="submit" value="Submit">
+
+								</form>
+
 					</div>
-					<div>
-						<label for="sampleInput">Your email</label>
-						<input class="full-width" name="email" type="email" placeholder="example@mailbox.com" id="sampleInput">
-				  </div>
-					<div>
-						  <label for="sampleRecipientInput">Password</label>
-						  <input class="full-width" name="password" type="password" placeholder="pass****word" id="sampleInput">
-			         	
-					</div>
-					<div>
-						<label for="sampleRecipientInput">Retype Password</label>
-						<input class="full-width" name="password2" type="password" placeholder="pass****word" id="sampleInput">
-			         	
-				  </div>
-				  <div>
-					<label for="sampleRecipientInput">Gender</label>
-					<div class="ss-custom-select">
-						<select class="full-width" name="gender" id="sampleRecipientInput">
-							<option value="1">Male</option>
-							<option value="2">Female</option>
-							<option value="3">Others</option>
-						</select>
-					</div>			         	
-			  	  </div>
-					   <input class="button-primary full-width-on-mobile" type="submit" value="Submit">
-  
-				 </form>	            
-  
-			 </div>
-  
-               
 
-        
-         </div> <!-- end brick-wrapper --> 
 
-   	</div> <!-- end row -->
 
-   	<div class="row">
-   		
-   		
 
-   	</div>
+				</div> <!-- end brick-wrapper -->
 
-   </section> <!-- end bricks -->
+			</div> <!-- end row -->
 
-   
-   <!-- footer
+			<div class="row">
+
+
+
+			</div>
+
+		</section> <!-- end bricks -->
+
+
+		<!-- footer
    ================================================== -->
-   
 
-<%- include ('../components/footer.ejs') %>
+
+		<%- include ('../components/footer.ejs') %>

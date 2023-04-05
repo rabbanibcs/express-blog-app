@@ -1,133 +1,146 @@
 <%- include ('../components/header.ejs') %>
 	<!-- header 
    ================================================== -->
-   <%- include ('../components/nav.ejs') %>
+	<%- include ('../components/nav.ejs') %>
 
 
-   <!-- masonry
+		<!-- masonry
    ================================================== -->
-   <section id="bricks">
+		<section id="bricks">
 
-   	<div class="row masonry">
+			<div class="row masonry">
 
-   		<!-- brick-wrapper -->
-         <div class="bricks-wrapper">
+				<!-- brick-wrapper -->
+				<div class="bricks-wrapper">
 
-         	<div class="grid-sizer"></div>
+					<div class="grid-sizer"></div>
 
-         	<div class="brick entry featured-grid animate-this">
-         		<div class="entry-content">
-         			<div id="featured-post-slider" class="flexslider">
-			   			<ul class="slides">
+					<div class="brick entry featured-grid animate-this">
+						<div class="entry-content">
+							<div id="featured-post-slider" class="flexslider">
+								<ul class="slides">
 
-				   			<li>
-				   				<div class="featured-post-slide">
+									<li>
+										<div class="featured-post-slide">
 
-						   			<div class="post-background" style="background-image:url('images/thumbs/featured/featured-1.jpg');"></div>
+											<div class="post-background"
+												style="background-image:url('images/thumbs/featured/featured-1.jpg');">
+											</div>
 
-								   	<div class="overlay"></div>			   		
+											<div class="overlay"></div>
 
-								   	<div class="post-content">
-								   		<ul class="entry-meta">
-												<li>September 06, 2016</li> 
-												<li><a href="#" >Naruto Uzumaki</a></li>				
-											</ul>	
+											<div class="post-content">
+												<ul class="entry-meta">
+													<li>September 06, 2016</li>
+													<li><a href="#">Naruto Uzumaki</a></li>
+												</ul>
 
-								   		<h1 class="slide-title"><a href="single-standard.html" title="">Minimalism Never Goes Out of Style</a></h1> 
-								   	</div> 				   					  
-				   			
-				   				</div>
-				   			</li> <!-- /slide -->
+												<h1 class="slide-title"><a href="single-standard.html"
+														title="">Minimalism Never Goes Out of Style</a></h1>
+											</div>
 
-				   			<li>
-				   				<div class="featured-post-slide">
+										</div>
+									</li> <!-- /slide -->
 
-						   			<div class="post-background" style="background-image:url('images/thumbs/featured/featured-2.jpg');"></div>
+									<li>
+										<div class="featured-post-slide">
 
-								   	<div class="overlay"></div>			   		
+											<div class="post-background"
+												style="background-image:url('images/thumbs/featured/featured-2.jpg');">
+											</div>
 
-								   	<div class="post-content">
-								   		<ul class="entry-meta">
-												<li>August 29, 2016</li>
-												<li><a href="#">Sasuke Uchiha</a></li>					
-											</ul>	
+											<div class="overlay"></div>
 
-								   		<h1 class="slide-title"><a href="single-standard.html" title="">Enhancing Your Designs with Negative Space</a></h1>
-						   			</div>		   				   					  
-				   			
-				   				</div>
-				   			</li> <!-- /slide -->
+											<div class="post-content">
+												<ul class="entry-meta">
+													<li>August 29, 2016</li>
+													<li><a href="#">Sasuke Uchiha</a></li>
+												</ul>
 
-				   			<li>
-				   				<div class="featured-post-slide">
+												<h1 class="slide-title"><a href="single-standard.html"
+														title="">Enhancing Your Designs with Negative Space</a></h1>
+											</div>
 
-						   			<div class="post-background" style="background-image:url('images/thumbs/featured/featured-3.jpg');;"></div>
+										</div>
+									</li> <!-- /slide -->
 
-								   	<div class="overlay"></div>			   		
+									<li>
+										<div class="featured-post-slide">
 
-								   	<div class="post-content">
-								   		<ul class="entry-meta">
-												<li>August 27, 2016</li>
-												<li><a href="#" class="author">Naruto Uzumaki</a></li>					
-											</ul>	
+											<div class="post-background"
+												style="background-image:url('images/thumbs/featured/featured-3.jpg');;">
+											</div>
 
-								   		<h1 class="slide-title"><a href="single-standard.html" title="">Music Album Cover Designs for Inspiration</a></h1>
-						   			</div>
+											<div class="overlay"></div>
 
-				   				</div>
-				   			</li> <!-- end slide -->
+											<div class="post-content">
+												<ul class="entry-meta">
+													<li>August 27, 2016</li>
+													<li><a href="#" class="author">Naruto Uzumaki</a></li>
+												</ul>
 
-				   		</ul> <!-- end slides -->
-				   	</div> <!-- end featured-post-slider -->        			
-         		</div> <!-- end entry content -->         		
-         	</div>
-			 <% posts.forEach(function(post) { %>
+												<h1 class="slide-title"><a href="single-standard.html" title="">Music
+														Album Cover Designs for Inspiration</a></h1>
+											</div>
 
-				<article class="brick entry format-standard animate-this">
+										</div>
+									</li> <!-- end slide -->
 
-					<div class="entry-thumb">
-					   <a href="single-standard.html" class="thumb-link">
-						<img src="data:image/<%=post.image.contentType%>;base64,
-						<%=post.image.data.toString('base64')%>">           
-					   </a>
+								</ul> <!-- end slides -->
+							</div> <!-- end featured-post-slider -->
+						</div> <!-- end entry content -->
 					</div>
-	 
-					<div class="entry-text">
-						<div class="entry-header">
-	 
-							<div class="entry-meta">
-								<span class="cat-links">
-									<a href="#">Design</a> 
-									<a href="#"><%= post.category %></a>               				
-								</span>			
+					<% posts.forEach(function(post) { %>
+
+						<article class="brick entry format-standard animate-this">
+
+							<div class="entry-thumb">
+								<a href="single-standard.html" class="thumb-link">
+									<img src="data:image/<%=post.image.contentType%>;base64,
+						<%=post.image.data.toString('base64')%>">
+								</a>
 							</div>
-	 
-							<h2 class="entry-title"><a href="/post/view?id=<%= post._id%>"><%= post.title %></a></h2>
-							
-						</div>
-							 <div class="entry-excerpt">
-								<%= post.content.slice(0,300-post.title.length) %>...
-								<a  href="/post/view?id=<%= post._id%>">read more</a>
-							 </div>
-					</div>
-	 
-					 </article> <!-- end article -->
-	 
-				<% }) %>
-         	
 
-         </div> <!-- end brick-wrapper --> 
+							<div class="entry-text">
+								<div class="entry-header">
 
-   	</div> <!-- end row -->
+									<div class="entry-meta">
+										<span class="cat-links">
+											<a href="#">Design</a>
+											<a href="#">
+												<%= post.category %>
+											</a>
+										</span>
+									</div>
 
-<%- include ('../components/pagination.ejs') %>
-   	
+									<h2 class="entry-title"><a href="/post/view?id=<%= post._id%>">
+											<%= post.title %>
+										</a></h2>
 
-   </section> <!-- end bricks -->
+								</div>
+								<div class="entry-excerpt">
+									<%= post.content.slice(0,300-post.title.length) %>...
+										<a href="/post/view?id=<%= post._id%>">read more</a>
+								</div>
+							</div>
 
-   
-   <!-- footer
+						</article> <!-- end article -->
+
+						<% }) %>
+
+
+				</div> <!-- end brick-wrapper -->
+
+			</div> <!-- end row -->
+
+			<%- include ('../components/pagination.ejs') %>
+
+
+		</section> <!-- end bricks -->
+
+
+		<!-- footer
    ================================================== -->
-   
 
-<%- include ('../components/footer.ejs') %>
+
+		<%- include ('../components/footer.ejs') %>

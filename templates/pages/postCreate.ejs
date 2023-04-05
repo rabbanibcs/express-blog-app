@@ -1,56 +1,59 @@
 <%- include ('../components/header.ejs') %>
-	<!-- header 
+   <!-- header 
    ================================================== -->
    <%- include ('../components/nav.ejs') %>
 
 
-   <!-- masonry
+      <!-- masonry
    ================================================== -->
-   <section id="bricks">
-      <div class="row masonry">
-         <h3>Create Post</h3>
-         <form method="POST" action="/post/create" enctype="multipart/form-data">
-           <div>
-               <label for="sampleInput">Title </label>
-               <input class="full-width" name="title" type="text" id="sampleInput">
-          </div>
-          <div>
-               <label for="exampleMessage">Category</label>
-               <!-- <input class="full-width" name="category" type="text"  id="exampleMessage"> -->
-               <select class="full-width" name="category" id="sampleRecipientInput">
-               <% if(locals.categories){ %>
-                  <% locals.categories.forEach((category)=>{%>
-                     <option value="<%=category.name%>"><%=category.name%></option>
-                  <%})%>
-               <% }%>
-               </select>
-            </div>
-           
-            <label for="exampleMessage">Content</label>
-            <textarea class="full-width" name="content" placeholder="Write your post here " id="exampleMessage"></textarea>
-   
-            
-            <div>
-               <label for="sampleInput">Image </label>
-               <input class="full-width" name="image" type="file" id="sampleInput">
-            </div>
-            <input class="button-primary full-width-on-mobile" type="submit" value="Submit">
-   
-         </form>	  
+      <section id="bricks">
+         <div class="row masonry">
+            <h3>Create Post</h3>
+            <form method="POST" action="/post/create" enctype="multipart/form-data">
+               <div>
+                  <label for="sampleInput">Title </label>
+                  <input class="full-width" name="title" type="text" id="sampleInput">
+               </div>
+               <div>
+                  <label for="exampleMessage">Category</label>
+                  <!-- <input class="full-width" name="category" type="text"  id="exampleMessage"> -->
+                  <select class="full-width" name="category" id="sampleRecipientInput">
+                     <% if(locals.categories){ %>
+                        <% locals.categories.forEach((category)=>{%>
+                           <option value="<%=category.name%>">
+                              <%=category.name%>
+                           </option>
+                           <%})%>
+                              <% }%>
+                  </select>
+               </div>
 
-      </div>
-                
+               <label for="exampleMessage">Content</label>
+               <textarea class="full-width" name="content" placeholder="Write your post here "
+                  id="exampleMessage"></textarea>
 
 
+               <div>
+                  <label for="sampleInput">Image </label>
+                  <input class="full-width" name="image" type="file" id="sampleInput">
+               </div>
+               <input class="button-primary full-width-on-mobile" type="submit" value="Submit">
+
+            </form>
+
+         </div>
 
 
 
-    
-   </section> <!-- end bricks -->
 
-   
-   <!-- footer
+
+
+
+      </section> <!-- end bricks -->
+
+
+      <!-- footer
    ================================================== -->
-   
 
-<%- include ('../components/footer.ejs') %>
+
+      <%- include ('../components/footer.ejs') %>

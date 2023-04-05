@@ -1,15 +1,13 @@
 const path = require('path');
-const userModel=require("../db/models/user")
-const postModel=require("../db/models/post")
-const categoryModel=require("../db/models/category")
+const userModel = require("../db/models/user")
+const postModel = require("../db/models/post")
+const categoryModel = require("../db/models/category")
 
-class admin{
-    constructor(){
+class admin {
 
-    }
-    async getUsers (req,res){
+    async getUsers(req, res) {
         try {
-            var users=await userModel.find({})
+            var users = await userModel.find({})
             // console.log(users);
 
         } catch (err) {
@@ -18,34 +16,31 @@ class admin{
 
 
 
-        res.render(path.join(__dirname,'../templates/pages/admin_users.ejs'),{users})
+        res.render(path.join(__dirname, '../templates/pages/admin_users.ejs'), { users })
     }
-    async getPosts (req,res){
+    async getPosts(req, res) {
         try {
-            var posts=await postModel.find({}).populate('user')
-            // console.log(posts);
+            var posts = await postModel.find({}).populate('user')
 
         } catch (err) {
             console.log(err);
         }
 
-        res.render(path.join(__dirname,'../templates/pages/admin_posts.ejs'),{posts})
+        res.render(path.join(__dirname, '../templates/pages/admin_posts.ejs'), { posts })
     }
-    async getCategories (req,res){
+    async getCategories(req, res) {
         try {
-            var categories=await categoryModel.find({})
-            // console.log(posts);
+            var categories = await categoryModel.find({})
 
         } catch (err) {
             console.log(err);
         }
 
-        res.render(path.join(__dirname,'../templates/pages/admin_categories.ejs'),{categories})
+        res.render(path.join(__dirname, '../templates/pages/admin_categories.ejs'), { categories })
     }
-    async createCategory (req,res){
+    async createCategory(req, res) {
         try {
-            var categories=await categoryModel.create({...req.body})
-            // console.log(posts);
+            var categories = await categoryModel.create({ ...req.body })
 
         } catch (err) {
             console.log(err);
@@ -54,4 +49,4 @@ class admin{
     }
 }
 
-module.exports=new admin()
+module.exports = new admin()

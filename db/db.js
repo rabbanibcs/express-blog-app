@@ -1,16 +1,16 @@
 const mongoose = require('mongoose');
-class db{
-    constructor(databaseUrl,dbName){
-        this.databaseUrl=databaseUrl
-        this.options={
-            dbName:dbName
+class db {
+    constructor(databaseUrl, dbName) {
+        this.databaseUrl = databaseUrl
+        this.options = {
+            dbName: dbName
         }
 
     }
-    connect(){
-        mongoose.connect(this.databaseUrl,this.options).then(()=>{
+    connect() {
+        mongoose.connect(this.databaseUrl, this.options).then(() => {
             console.log('Mongodb is connected.');
-        }).catch((err)=>{
+        }).catch((err) => {
             console.log('Could not connect DB.');
             console.log(err);
         })
@@ -21,6 +21,6 @@ class db{
 
 
 
-module.exports=db;
+module.exports = db;
 // module.exports=connectDb;
 

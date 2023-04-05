@@ -1,158 +1,158 @@
 <div class="comments-wrap">
-    <div id="comments" class="row">
-        <div class="col-full">
+   <div id="comments" class="row">
+      <div class="col-full">
 
-       <h3><%=post.comments.length%> Comments</h3>
+         <h3>
+            <%=post.comments.length%> Comments
+         </h3>
 
-       <!-- commentlist -->
-       <ol class="commentlist">
-         <%if(post.comments){%>
-            <%post.comments.forEach((comment,id)=>{%>
-               <li class="depth-1">
+         <!-- commentlist -->
+         <ol class="commentlist">
+            <%if(post.comments){%>
+               <%post.comments.forEach((comment,id)=>{%>
+                  <li class="depth-1">
 
-                  <div class="avatar">
-                     <%if(comment.user.image.data!=undefined){%>
-                        <img width="50" height="50" src="data:image/<%=comment.user.image.contentType%>;base64,<%=comment.user.image.data.toString('base64')%>"> 
-                     <%}%>
-                  </div>
-     
-                  <div class="comment-content">
-     
-                      <div class="comment-info">
-                         <cite><%=comment.user.name%></cite>
-     
-                         <div class="comment-meta">
-                            <time class="comment-time" datetime="2014-07-12T23:05"><%=comment.createdAt.toLocaleString("en-US",{
-                              year: "numeric",
-                              month: "short",
-                              day: "numeric",
-                              hour:"numeric",
-                              minute:"2-digit",
-
-                            })%></time>
-                            <span class="sep">/</span><a class="reply" onclick="reply('<%=comment._id%>')">Reply</a>
-                         </div>
-                      </div>
-     
-                      <div class="comment-text">
-                         <p><%=comment.message%></p>
-                      </div>
-     
-      <!--  
-      ==============reply form======================== -->
-                        <div 
-                        id="<%=comment._id%>" 
-                        style="display: none;"
-                        >
-                        <form method="POST" action="/post/subcomment" 
-                        >
-                           <input type="hidden"  name="comment_id" value="<%=comment._id%>">
-                           <input type="hidden"name="post_id" value="<%=post._id%>">
-                           <textarea class="full-width" 
-                           name="message" required
-                           placeholder="Your message" id="exampleMessage"></textarea>
-                           <input class="button-primary full-width-on-mobile" type="submit" value="Reply">
-                        </form>
-
+                     <div class="avatar">
+                        <%if(comment.user.image.data!=undefined){%>
+                           <img width="50" height="50"
+                              src="data:image/<%=comment.user.image.contentType%>;base64,<%=comment.user.image.data.toString('base64')%>">
+                           <%}%>
                      </div>
 
+                     <div class="comment-content">
 
-                      
-                   </div>
-                   <!--
+                        <div class="comment-info">
+                           <cite>
+                              <%=comment.user.name%>
+                           </cite>
+
+                           <div class="comment-meta">
+                              <time class="comment-time"
+                                 datetime="2014-07-12T23:05"><%=comment.createdAt.toLocaleString("en-US",{
+                                    year: "numeric" , month: "short" , day: "numeric" , hour:"numeric",
+                                    minute:"2-digit", })%></time>
+                              <span class="sep">/</span><a class="reply" onclick="reply('<%=comment._id%>')">Reply</a>
+                           </div>
+                        </div>
+
+                        <div class="comment-text">
+                           <p>
+                              <%=comment.message%>
+                           </p>
+                        </div>
+
+                        <!--  
+      ==============reply form======================== -->
+                        <div id="<%=comment._id%>" style="display: none;">
+                           <form method="POST" action="/post/subcomment">
+                              <input type="hidden" name="comment_id" value="<%=comment._id%>">
+                              <input type="hidden" name="post_id" value="<%=post._id%>">
+                              <textarea class="full-width" name="message" required placeholder="Your message"
+                                 id="exampleMessage"></textarea>
+                              <input class="button-primary full-width-on-mobile" type="submit" value="Reply">
+                           </form>
+
+                        </div>
+
+
+
+                     </div>
+                     <!--
                      ============== comments of comment ==============-->
-                   <div >
-                     <ul class="children" >
+                     <div>
+                        <ul class="children">
 
-                        <%comment.subComments.forEach((subComment,id)=>{%>
-   
-   
-                        <li class="depth-2">
-   
-                           <div class="avatar ml-5" >
-                              <%if(comment.user.image.data!=undefined){%>
-                                 <img width="50" height="50" src="data:image/<%=subComment.user.image.contentType%>;base64,<%=subComment.user.image.data.toString('base64')%>"> 
-                              <%}%>
-                           </div>
-   
-                           <div class="comment-content">
-   
-                              <div class="comment-info">
-                                 <cite><%=subComment.user.name%></cite>
-   
-                                 <div class="comment-meta">
-                                    <!-- <time class="comment-time" datetime="2014-07-12T25:05">Jul 12, 2014 @ 25:05</time> -->
-                                    <time class="comment-time" datetime="2014-07-12T23:05"><%=subComment.createdAt.toLocaleString("en-US",{
-                                       year: "numeric",
-                                       month: "short",
-                                       day: "numeric",
-                                       hour:"numeric",
-                                       minute:"2-digit",
-         
-                                     })%></time>
+                           <%comment.subComments.forEach((subComment,id)=>{%>
+
+
+                              <li class="depth-2">
+
+                                 <div class="avatar ml-5">
+                                    <%if(comment.user.image.data!=undefined){%>
+                                       <img width="50" height="50"
+                                          src="data:image/<%=subComment.user.image.contentType%>;base64,<%=subComment.user.image.data.toString('base64')%>">
+                                       <%}%>
                                  </div>
-                              </div>
-   
-                              <div class="comment-text">
-                                 <p><%=subComment.message%></p>
-                              </div>
-   
-                           </div>
-   
-   
-            
-                        </li>
-                        <%})%>
-   
-                     </ul>
-                   </div>
-                  
-               </li>
-            <%})%>
-          
-          <%}%>
-          
 
-       </ol> <!-- Commentlist End -->					
+                                 <div class="comment-content">
 
-       <!-- respond -->
-       <div class="respond">
+                                    <div class="comment-info">
+                                       <cite>
+                                          <%=subComment.user.name%>
+                                       </cite>
 
-           <h3>Leave a Comment</h3>
+                                       <div class="comment-meta">
+                                          <!-- <time class="comment-time" datetime="2014-07-12T25:05">Jul 12, 2014 @ 25:05</time> -->
+                                          <time class="comment-time"
+                                             datetime="2014-07-12T23:05"><%=subComment.createdAt.toLocaleString("en-US",{
+                                                year: "numeric" , month: "short" , day: "numeric" , hour:"numeric",
+                                                minute:"2-digit", })%></time>
+                                       </div>
+                                    </div>
 
-          <form name="contactForm" id="contactForm" method="POST" action="/post/comment">
-            <fieldset>
-               <div class="form-field">
-                  <input value="<%=post.id%>" 
-                  name="post_id"  id="cName" type="hidden" class="full-width" placeholder="Your Name" >
-               </div>
-               <div class="message form-field">
-                  <textarea name="message" id="cMessage" class="full-width" placeholder="Your Message" required></textarea>
-               </div>
-               <button type="submit" class="submit button-primary" >Submit</button>
-            </fieldset>
-          </form> <!-- Form End -->
+                                    <div class="comment-text">
+                                       <p>
+                                          <%=subComment.message%>
+                                       </p>
+                                    </div>
 
-       </div> <!-- Respond End -->
+                                 </div>
 
-     </div> <!-- end col-full -->
- </div> <!-- end row comments -->
+
+
+                              </li>
+                              <%})%>
+
+                        </ul>
+                     </div>
+
+                  </li>
+                  <%})%>
+
+                     <%}%>
+
+
+         </ol> <!-- Commentlist End -->
+
+         <!-- respond -->
+         <div class="respond">
+
+            <h3>Leave a Comment</h3>
+
+            <form name="contactForm" id="contactForm" method="POST" action="/post/comment">
+               <fieldset>
+                  <div class="form-field">
+                     <input value="<%=post.id%>" name="post_id" id="cName" type="hidden" class="full-width"
+                        placeholder="Your Name">
+                  </div>
+                  <div class="message form-field">
+                     <textarea name="message" id="cMessage" class="full-width" placeholder="Your Message"
+                        required></textarea>
+                  </div>
+                  <button type="submit" class="submit button-primary">Submit</button>
+               </fieldset>
+            </form> <!-- Form End -->
+
+         </div> <!-- Respond End -->
+
+      </div> <!-- end col-full -->
+   </div> <!-- end row comments -->
 </div> <!-- end comments-wrap -->
 
 
 <script>
 
-   function reply(id){
+   function reply(id) {
       console.log(id);
-      const x=document.getElementById(id)
+      const x = document.getElementById(id)
       if (x.style.display === "none") {
-            x.style.display = "block";
-            // y.style.display = "none";
+         x.style.display = "block";
+         // y.style.display = "none";
 
-        } else {
-            x.style.display = "none";
-            // y.style.display = "block";
+      } else {
+         x.style.display = "none";
+         // y.style.display = "block";
 
-        }
+      }
    }
 </script>

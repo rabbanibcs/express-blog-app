@@ -1,28 +1,28 @@
 <%- include ('../components/header.ejs') %>
-	<!-- header 
+    <!-- header 
    ================================================== -->
-   <%- include ('../components/nav.ejs') %>
-   <section id="bricks">
-   	<div class="main">
-   <%- include ('../components/admin_left.ejs') %>
-        
-        <div class="category-right">
-            
-            
-            <div class="center">
-            <%-include('../components/categories_table.ejs')%>
+    <%- include ('../components/nav.ejs') %>
+        <section id="bricks">
+            <div class="main">
+                <%- include ('../components/admin_left.ejs') %>
 
+                    <div class="category-right">
+
+
+                        <div class="center">
+                            <%-include('.. /components/categories_table.ejs')%>
+
+                        </div>
+                        <div class="center-right">
+                            <h3>Add a Category:</h3>
+                            <form class="" action="/admin/categories" method="POST">
+                                <input type="text" name="name">
+                                <input type="submit" value="Add">
+                            </form>
+                        </div>
+
+                    </div>
             </div>
-            <div class="center-right">
-                <h3>Add a Category:</h3>
-                <form class="" action="/admin/categories" method="POST">
-                    <input type="text" name="name">
-                    <input type="submit" value="Add">
-                </form>
-            </div>
-                
-        </div>
-    </div>
 
 
 
@@ -31,13 +31,13 @@
 
 
 
-   </section> <!-- end bricks -->
-<!-- Java Script
-================================================== --> 
-<script src="/js/jquery-2.1.3.min.js"></script>
-<script src="/js/plugins.js"></script>
-<script src="/js/jquery.appear.js"></script>
-<script src="/js/main.js"></script>
-</body>
+        </section> <!-- end bricks -->
+        <!-- Java Script
+================================================== -->
+        <script src="/js/jquery-2.1.3.min.js"></script>
+        <script src="/js/plugins.js"></script>
+        <script src="/js/jquery.appear.js"></script>
+        <script src="/js/main.js"></script>
+        </body>
 
-</html>
+        </html>

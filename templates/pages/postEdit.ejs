@@ -1,51 +1,55 @@
 <%- include ('../components/header.ejs') %>
-	<!-- header 
+   <!-- header 
    ================================================== -->
    <%- include ('../components/nav.ejs') %>
 
-   <!-- masonry
+      <!-- masonry
    ================================================== -->
-   <section id="bricks">
-      <div class="row masonry">
-         <h3>Edit Post</h3>
-         <form method="POST" action="/post/edit" >
-           <div>
-               <label for="sampleInput">Title </label>
-               <input class="full-width" name="title" value="<%=post.title%>" type="text" id="sampleInput">
-               <input  class="full-width" name="id" value="<%=post._id%>" type="hidden" id="sampleInput">
-          </div>
-          <div>
-               <label for="exampleMessage">Category</label>
-               <!-- <input class="full-width" name="category" type="text"  id="exampleMessage"> -->
-               <select class="full-width" name="category" id="sampleRecipientInput">
-               <% if(locals.categories){ %>
-                  <% locals.categories.forEach((category)=>{%>
-                     <% if(category.name===post.category){%>
-                        <option selected value="<%=category.name%>"><%=category.name%></option>
-                     <%}else{%>
-                        <option value="<%=category.name%>"><%=category.name%></option>
-                        <%}%>
-                  <%})%>
-               <% }%>
-               </select>
-            </div>
-           
-            <label for="exampleMessage">Content</label>
-            <textarea class="full-width" name="content" id="exampleMessage"><%=post.content%></textarea>
-            
-            <% if(locals.editPost){ %>
-            <input class="button-primary full-width-on-mobile" type="submit" value="Update">
+      <section id="bricks">
+         <div class="row masonry">
+            <h3>Edit Post</h3>
+            <form method="POST" action="/post/edit">
+               <div>
+                  <label for="sampleInput">Title </label>
+                  <input class="full-width" name="title" value="<%=post.title%>" type="text" id="sampleInput">
+                  <input class="full-width" name="id" value="<%=post._id%>" type="hidden" id="sampleInput">
+               </div>
+               <div>
+                  <label for="exampleMessage">Category</label>
+                  <!-- <input class="full-width" name="category" type="text"  id="exampleMessage"> -->
+                  <select class="full-width" name="category" id="sampleRecipientInput">
+                     <% if(locals.categories){ %>
+                        <% locals.categories.forEach((category)=>{%>
+                           <% if(category.name===post.category){%>
+                              <option selected value="<%=category.name%>">
+                                 <%=category.name%>
+                              </option>
+                              <%}else{%>
+                                 <option value="<%=category.name%>">
+                                    <%=category.name%>
+                                 </option>
+                                 <%}%>
+                                    <%})%>
+                                       <% }%>
+                  </select>
+               </div>
 
-            <% }else{%>
-            <input class="button-primary full-width-on-mobile" type="submit" value="Submit">
-            <% }%>
-   
-         </form>	  
+               <label for="exampleMessage">Content</label>
+               <textarea class="full-width" name="content" id="exampleMessage"><%=post.content%></textarea>
 
-      </div>
-    
-   </section> <!-- end bricks -->
-   
-   <!-- footer
+               <% if(locals.editPost){ %>
+                  <input class="button-primary full-width-on-mobile" type="submit" value="Update">
+
+                  <% }else{%>
+                     <input class="button-primary full-width-on-mobile" type="submit" value="Submit">
+                     <% }%>
+
+            </form>
+
+         </div>
+
+      </section> <!-- end bricks -->
+
+      <!-- footer
    ================================================== -->
-<%- include ('../components/footer.ejs') %>
+      <%- include ('../components/footer.ejs') %>
