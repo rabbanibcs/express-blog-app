@@ -7,7 +7,7 @@ const getUser = async (id) => {
     return user
 }
 const index = async (req, res) => {
-    console.log(req.user);
+    // console.log(req.user);
     const currentPage = req.query.page || 1
     if (currentPage < 1) {
         res.redirect("/")
@@ -16,7 +16,7 @@ const index = async (req, res) => {
         posts = await postModel.find({}).skip(size * (currentPage - 1)).limit(size)
         /**pagination */
         var total_posts = await postModel.find({}).count()
-        console.log('total posts', total_posts);
+        // console.log('total posts', total_posts);
         var pages = []
         for (let i = 1; i <= total_posts; i++) {
             if (i % size == 0) {
@@ -26,7 +26,7 @@ const index = async (req, res) => {
         if (total_posts % size != 0) {
             pages.push(Math.ceil(total_posts / size))
         }
-        console.log(pages);
+        // console.log(pages);
         res.render(path.join(__dirname, '../templates/pages/index.ejs'), { posts, pages, currentPage })
     }
 }

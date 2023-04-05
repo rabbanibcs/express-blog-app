@@ -57,7 +57,7 @@ class post {
             }
             res.render(path.join(__dirname, '../templates/pages/viewPost.ejs'), { post })
         } catch (err) {
-            console.log(err.message);
+            // console.log(err.message);
             res.redirect(`/error?message=${err.message}`)
         }
     }
