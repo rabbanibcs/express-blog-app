@@ -63,8 +63,17 @@ app.set('view engine', 'ejs');
 /** database connection */
 const DB = new db(databaseUrl, dbName)
 DB.connect()
+
 app.listen(port, () => {
   console.log(`Server is listening on http://127.0.0.1:${port}`)
 
 })
+
+
+if(process.argv[2] && process.argv[3] && process.argv[4]){
+  const createAdmin=require('./utils')
+  createAdmin(process.argv[2],process.argv[3],process.argv[4])
+  
+
+}
 

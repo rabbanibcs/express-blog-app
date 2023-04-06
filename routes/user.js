@@ -28,7 +28,7 @@ passport.deserializeUser(function (user, cb) {
 
 /* GET signin page. */
 router.get('/signin', authenticatedUserNotAllowed, userController.login);
-router.post('/signin', passport.authenticate('local', { failureRedirect: '/user/signin' }),
+router.post('/signin', passport.authenticate('local', { failureRedirect: '/error?message="Athentication failed. May be you are not a registered user."' }),
   (req, res) => {
     // console.log(req);
     res.redirect('/');
@@ -38,6 +38,7 @@ router.post('/signin', passport.authenticate('local', { failureRedirect: '/user/
 /* GET signup page. */
 router.get('/signup', authenticatedUserNotAllowed, userController.createUser);
 router.post('/signup', userController.createUser);
+
 router.get('/signout', loginRequired, function (req, res, next) {
   req.logout((err) => {
     if (err) { return next(err); }
